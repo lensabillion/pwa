@@ -1,13 +1,15 @@
-const cachName ='v1';
+const cacheName ='v2';
 
 
 //Call Install Event
-self.addEventListener('install',(e) =>{
+self.addEventListener('install',e => {
     console.log("service worker: Installed");
 });
 //Call Activate Event
-self.addEventListener('activate',(e) =>{
+self.addEventListener('activate',e => {
     console.log("service worker: Activated");
+    //Remove Unwanted caches
+
     e.waitUntil(
         caches.keys().then(cacheNames =>{
             return Promise.all(
@@ -32,12 +34,12 @@ self.addEventListener('fetch',e =>{
             const resClone = res.clone();
             //Open cache
             caches
-            .open(cachName)
+            .open(cacheName)
             .then(cache => {
                 cache.put(e.request,resClone);
 
             });
             return res;
-        }).catch(err => catches.match(e.request).then(res=>res))
+        }).catch(err => caches.match(e.request).then(res=>res))
     );
 });
