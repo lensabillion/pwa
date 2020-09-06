@@ -31,7 +31,7 @@ const key = "e473b0e2b1d68899e4785fd5428ef42b";
 
 
 button.addEventListener('click',function(){
-    fetch('http://api.openweathermap.org/data/2.5/weather?q='+inputvalue.value+'&appid=e473b0e2b1d68899e4785fd5428ef42b')
+    fetch('https://api.openweathermap.org/data/2.5/weather?q='+inputvalue.value+'&appid=e473b0e2b1d68899e4785fd5428ef42b')
   
   .then(response => response.json())
   .then(data =>{
